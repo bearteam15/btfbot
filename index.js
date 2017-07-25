@@ -1,6 +1,6 @@
 "use strict";
 
-require('dotenv').config()
+require('dotenv').config();
 
 const express = require('express');
 const app = express();
@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
-var apikey = process.env.SLACK_API_TOKEN;
+const apikey = process.env.SLACK_API_TOKEN;
 
 app.set('port', (process.env.PORT || 9001));
 
@@ -24,9 +24,9 @@ app.get('/hello', (req, res) => {
 
 
 app.post('/', (req, res) => {
-    var text = req.body.text;
+    const text = req.body.text;
     // implement your bot here ...
-    var body = {
+    const body = {
         response_type: "in_channel",
         "attachments": [{
             "text": "hello world"
