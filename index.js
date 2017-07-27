@@ -4,18 +4,19 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'landing-page/dist')));
 
 const apikey = process.env.SLACK_API_TOKEN;
 
 app.set('port', (process.env.PORT || 9001));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
+    res.sendFile(__dirname + '/landing-page/dist/index.html');
 });
 
 app.get('/hello', (req, res) => {
