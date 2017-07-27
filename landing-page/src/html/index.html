@@ -2,22 +2,50 @@
 <html lang="en">
 
 <head>
-    <title>BTFBot</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Description of our bot">
-    <link href="/css/main.css" rel="stylesheet">
-    <!-- Change the styles of header bar and address bar on mobile -->
-    <!-- Android -->
-    <meta name="theme-color" content="#fff">
+  <title>BTFBot</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Description of our bot">
+  <link href="/css/main.css" rel="stylesheet">
+  <!-- Change the styles of header bar and address bar on mobile -->
+  <!-- Android -->
+  <meta name="theme-color" content="#fff">
 </head>
 
 <body>
-    <h1>BTF Bot</h1>
-    <p>Just another bot :)</p>
+  <div class="uk-section uk-section-muted section--main">
+    <div class="uk-container">
+      <h1 class="uk-heading-bullet">@btfbot</h1>
+      <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+        <div class="uk-card-media-left uk-cover-container">
+          <img src="/images/bot-page-bg.jpeg" alt="" uk-cover>
+          <canvas width="600" height="400"></canvas>
+        </div>
+        <div>
+          <div class="uk-card-body">
+            <h3 class="uk-card-title">Hello!</h3>
+            <p>This is just initial version of landing page for our slack bot.</p>
+            <p>Please come back later too see how it works <span uk-icon="icon: happy"></span></p>
+            <hr class="uk-divider-small">
+            <p>This landing page uses:</p>
+            <ul class="uk-list uk-list-bullet">
+              <li><a class="uk-link-muted" href="https://webpack.js.org/concepts/">Webpack</a> and <a class="uk-link-muted" href="https://babeljs.io/">Babel</a> for JavaScript</li>
+              <li><a class="uk-link-muted" href="http://sass-lang.com/">Sass</a> for styles</li>
+              <li><a class="uk-link-muted" href="https://getuikit.com/">UIkit 3</a> as a CSS framework</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="uk-text-meta uk-margin-bottom">
+        <a href="https://github.com/bearteam15/btfbot">
+          <span class="uk-margin-small-right" uk-icon="icon: github"></span> Check out repo for this project here
+        </a>
+      </p>
+    </div>
+  </div>
 
-    <script type="text/javascript" src="/js/main.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
 </body>
 
 </html>
