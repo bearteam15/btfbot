@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const battle = require('./battle.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,19 +21,27 @@ app.get('/', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.send('hello');
+       res.send('hello');
 });
 
 app.post('/', (req, res) => {
-    const opponent = req.body.text;
+    const opponent = req.body.text.split(" ");
     const currentUser = req.body.user_name;
     const body = {
         response_type: "in_channel",
         "attachments": [{
-            "text": `Let's start battle @${currentUser} VS @${opponent}! Who will be the winner?`
+            "text": `Let's start battle @${opponent[0]} VS @${opponent[1]}! Who will be the winner?`
         }]
     };
+    battle.getData(opponent[0]).then(text=>{
+        console.log(text);
+    body.text = text;
     res.send(body);
+}).catch(err => {
+  console.error('An error occurred making this request');
+  console.error(err.message);
+});
+    
 });
 
 
