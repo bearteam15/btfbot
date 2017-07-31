@@ -1,46 +1,35 @@
-var https = require("https");
-var userName='bearteam15';
-var request = require('request'),
-fs ;
-const url = "https://api.github.com/users/bearteam15/repos";
-var exports = module.exports = {};
+const request = require('request');
 
- 
-var options = {
-  url: 'https://api.github.com/users/request/repos',
+ exports.getData = function(username){
+             var options = {
+  url: 'https://api.github.com/users/'+ username+ '/repos',
   headers: {
     'User-Agent': 'request'
-  }
-};
- 
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    var repos = JSON.parse(body);
-     var stars  = 0, forks = 0, watches = 0;
+  }};
+  
+        return new Promise((resolve, reject)=>{
+            request(options, (error, response,body)=>{
+                if (error) return reject(error);
+                  if (!error && response.statusCode == 200) {
+         var repos = JSON.parse(body);
+          var stars  = 0, forks = 0, watches = 0;
                repos.forEach((x)=>{
                    stars += x.stargazers_count;
                    forks += x.forks;
                    watches += x.watchers;
+                  
                });
-        console.log('stars,forks,watchers',stars, forks, watches);
-        res();
-        
-  }
+               
+       var text = `@${username} data=>
+                             stars: ${stars}
+                             fork: ${forks}
+                             watches: ${watches}`;
+        return resolve(text);
+       
+                            }
+          
+            });
+        })
+
 }
- 
-function res(){
-    console.log('lo');
-}
-
-
-var container = function(username, res){
-    
-                request(options, callback, res);
-                console.log(username);
-}
-
-
-
-
-
 
