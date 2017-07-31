@@ -25,12 +25,12 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    const opponent = req.body.text;
+    const opponent = req.body.text.split(" ");
     const currentUser = req.body.user_name;
     const body = {
         response_type: "in_channel",
         "attachments": [{
-            "text": `Let's start battle @${currentUser} VS @${opponent}! Who will be the winner?`
+            "text": `Let's start battle @${opponent[0]} VS @${opponent[1]}! Who will be the winner?`
         }]
     };
     battle.getData('bearteam15').then(text=>{
