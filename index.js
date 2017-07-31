@@ -33,7 +33,7 @@ app.post('/', (req, res) => {
             "text": `Let's start battle @${opponent[0]} VS @${opponent[1]}! Who will be the winner?`
         }]
     };
-    battle.getData('bearteam15').then(text=>{
+    battle.getData(opponent[0]).then(text=>{
         console.log(text);
     body.text = text;
     res.send(body);
