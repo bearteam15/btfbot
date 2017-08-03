@@ -40,16 +40,16 @@ app.post('/', (req, res) => {
 
   battle.getData([firstUser, secondUser]).then(text => {
     const output = `user: ${text[0].username}
-                    /stars: ${text[0].stars}
-                    /fork:${text[0].forks}
-                    /watch:${text[0].watches}
-                    /followers:${text[0].followers}
+                    stars: ${text[0].stars}
+                    fork:${text[0].forks}
+                    watch:${text[0].watches}
+                    followers:${text[0].followers}
                     --------------------------------
                     user: ${text[1].username}
-                    /stars: ${text[1].stars}
-                    /fork:${text[1].forks}
-                    /watch:${text[1].watches}
-                    /followers:${text[1].followers}`;
+                    stars: ${text[1].stars}
+                    fork:${text[1].forks}
+                    watch:${text[1].watches}
+                    followers:${text[1].followers}`;
 
     console.log(output);
     body.text = output;
