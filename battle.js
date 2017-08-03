@@ -1,35 +1,59 @@
-const request = require('request');
+const axios = require('axios');
 
- exports.getData = function(username){
-             var options = {
-  url: 'https://api.github.com/users/'+ username+ '/repos',
-  headers: {
-    'User-Agent': 'request'
-  }};
-  
-        return new Promise((resolve, reject)=>{
-            request(options, (error, response,body)=>{
-                if (error) return reject(error);
-                  if (!error && response.statusCode == 200) {
-         var repos = JSON.parse(body);
-          var stars  = 0, forks = 0, watches = 0;
-               repos.forEach((x)=>{
-                   stars += x.stargazers_count;
-                   forks += x.forks;
-                   watches += x.watchers;
-                  
-               });
-               
-       var text = `@${username} data=>
-                             stars: ${stars}
-                             fork: ${forks}
-                             watches: ${watches}`;
-        return resolve(text);
-       
-                            }
-          
-            });
-        })
+exports.getData = (users) => {
+  const usersData = [];
+  return new Promise((resolve, reject) => {
 
+    const composeReposRequest = (user) => {
+      return `https://api.github.com/users/${user}/repos`;
+    }
+
+    const composeUserRequest = (user) => {
+      return `https://api.github.com/users/${user}`;
+    }
+
+    function getUserRepos(user) {
+      return axios.get(composeReposRequest(user));
+    }
+
+    function getUserInfo(user) {
+      return axios.get(composeUserRequest(user));
+    }
+
+    axios.all([getUserRepos(users[0]), getUserRepos(users[1]), getUserInfo(users[0]), getUserInfo(users[1])])
+    .then(axios.spread(function (repos_one, repos_two, info_one, info_two) {
+      const fetchedData = [repos_one.data,repos_two.data];
+      const firstUserData = info_one.data;
+      const secondUserData = info_two.data;
+
+      fetchedData.map(repos => {
+        let stars = 0,
+            forks = 0,
+            watches = 0;
+
+        repos.forEach(repo => {
+          stars += repo.stargazers_count;
+          forks += repo.forks;
+          watches += repo.watchers;
+        });
+
+        usersData.push({
+          stars: stars,
+          forks: forks,
+          watches: watches
+        });
+      });
+
+      usersData[0].username = firstUserData.login;
+      usersData[0].followers = firstUserData.followers;
+
+      usersData[1].username = secondUserData.login;
+      usersData[1].followers = secondUserData.followers;
+
+      return usersData;
+    })).then(output => {
+      console.log(usersData);
+      return resolve(usersData);
+    });
+});
 }
-

@@ -1,3 +1,4 @@
 .env
 /node_modules
 /landing-page/dist
+npm-debug.log
