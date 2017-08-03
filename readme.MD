@@ -42,3 +42,6 @@ After you create a new partial, just import it in `src/_imports.scss` file with 
 Here you can read more to have a quick overview of what you can do with Sass http://sass-lang.com/guide
 
 Autoprefixer is also included into the build process, so don't use any vendor prefixes in your stylesheets, they will be added automatically.
+
+
+>Visit https://btfbot.herokuapp.com to view the current landing page of this project.
