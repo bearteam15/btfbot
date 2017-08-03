@@ -52,7 +52,17 @@ app.post('/', (req, res) => {
                     followers:${text[1].followers}`;
 
     console.log(output);
-    body.text = output;
+    // work on getting the overall winner
+    var winObj = battle.getWinner(text);
+    var winnerOutput = `stars winner: ${winObj.star_winner},
+                        forks winner: ${winObj.fork_winner},
+                        watches winner: ${winObj.watch_winner},
+                        followers winner: ${winObj.follows_winner},
+                        ULTIMATE WINNER:  ${winObj.battle_winner}
+                
+              `;
+  
+    body.attachments[0].text = output + "\n\n\n" + winnerOutput;
     res.send(body);
   }).catch(err => {
     console.error('An error occurred making this request');

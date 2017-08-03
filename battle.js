@@ -1,3 +1,4 @@
+"use strict"
 const axios = require('axios');
 
 exports.getData = (users) => {
@@ -57,3 +58,51 @@ exports.getData = (users) => {
     });
 });
 }
+
+
+exports.getWinner = obj =>{
+                    let users = obj ,
+                   starWinner =   compare(users,"stars"),
+                   forkWinner = compare(users, "forks"),
+                   watchWinner = compare(users, "watches"),
+                   ffWinner  =  compare(users,"followers"),
+                   battleWinner = calculatePoints(users);
+                   
+                   
+                   return {
+                     star_winner:starWinner,
+                     fork_winner:forkWinner,
+                     watch_winner:watchWinner,
+                     follows_winner: ffWinner,
+                     battle_winner: battleWinner
+                     
+                   }
+                   
+    };
+    
+    
+function compare(users, prop){
+     var  user1 = users[0], user2 = users[1];
+      if (user1[prop] > user2[prop]){
+          return user1.username;
+      }
+      else if (user1[prop] < user2[prop]){
+        return user2.username;
+      }
+      else{
+        return "tie";
+      }
+}
+
+function calculatePoints(users){
+    var points = {stars:20,forks:20, watches:10,follow:5};
+    var user1 = users[0], user2 = users[1];
+    var userPt1 = 0,userPt2 = 0;
+    userPt1 = (user1.stars * points.stars) + (user1.forks * points.forks) + (user1.watches * points.watches) + (user1.followers * points.follow);
+    userPt2 = (user2.stars * points.stars) + (user2.forks * points.forks) + (user2.watches * points.watches) + (user2.followers * points.follow);
+    
+    if (userPt1 > userPt2){ return user1.username; }
+    else if (userPt1 < userPt2){ return user2.username; }
+    else { return "tie"; }
+}
+
