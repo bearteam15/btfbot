@@ -7,6 +7,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const battle = require('./battle.js');
+const formatted = require('./format_output.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -29,40 +30,12 @@ app.post('/', (req, res) => {
   const firstUser = opponents[0];
   const secondUser = opponents[1];
 
-  const body = {
-    response_type: "in_channel",
-    "attachments": [
-      {
-        "text": `Let's start battle @${firstUser} VS @${secondUser}! Who will be the winner?`
-      }
-    ]
-  };
+  battle.getData([firstUser, secondUser]).then(users => {
 
-  battle.getData([firstUser, secondUser]).then(text => {
-    const output = `user: ${text[0].username}
-                    stars: ${text[0].stars}
-                    fork:${text[0].forks}
-                    watch:${text[0].watches}
-                    followers:${text[0].followers}
-                    --------------------------------
-                    user: ${text[1].username}
-                    stars: ${text[1].stars}
-                    fork:${text[1].forks}
-                    watch:${text[1].watches}
-                    followers:${text[1].followers}`;
+    const winObj = battle.getWinner(users);
 
-    console.log(output);
-    // work on getting the overall winner
-    var winObj = battle.getWinner(text);
-    var winnerOutput = `stars winner: ${winObj.star_winner},
-                        forks winner: ${winObj.fork_winner},
-                        watches winner: ${winObj.watch_winner},
-                        followers winner: ${winObj.follows_winner},
-                        ULTIMATE WINNER:  ${winObj.battle_winner}
-                
-              `;
-  
-    body.attachments[0].text = output + "\n\n\n" + winnerOutput;
+    const body = formatted.outputMessage(users, winObj);
+
     res.send(body);
   }).catch(err => {
     console.error('An error occurred making this request');
