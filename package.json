@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp && node index.js"
+    "start": "gulp && node index.js",
+    "dev": "gulp && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-webpack": "^1.5.0",
     "jquery": "^3.2.1",
+    "nodemon": "^1.11.0",
     "request": "^2.81.0",
     "run-sequence": "^2.1.0",
     "webpack": "^3.4.1"
