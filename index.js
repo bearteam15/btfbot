@@ -27,9 +27,14 @@ app.get('/hello', (req, res) => {
 
 app.post('/', (req, res) => {
   const userText = req.body.text.split(" ");
-  const firstUser = userText[0].toLowerCase();
-  const secondUser = userText[1].toLowerCase();
-  if (firstUser === "help" || secondUser == "help" || !firstUser || !secondUser){
+  const firstUser = userText[0];
+  var secondUser = "";
+  if (userText.length > 1){
+    //check how many words user entered
+   secondUser = userText[1];
+  }
+  if (!firstUser || !secondUser || firstUser.toLowerCase() === "help" || secondUser.toLowerCase() == "help" ){
+    //check if user input is "help" or empty and return help
      const help = getHelp();
     let data = {
     response_type: "in_channel",
@@ -44,6 +49,7 @@ app.post('/', (req, res) => {
   }
 
 else{
+  
   battle.getData([firstUser, secondUser]).then(users => {
 
     const winObj = battle.getWinner(users);
@@ -55,7 +61,9 @@ else{
     console.error('An error occurred making this request');
     console.error(err.message);
   });
+  
 }
+
 });
 
 function getHelp(){
