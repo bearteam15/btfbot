@@ -27,8 +27,21 @@ app.get('/hello', (req, res) => {
 
 app.post('/', (req, res) => {
   const opponents = req.body.text.split(" ");
-  const firstUser = opponents[0];
-  const secondUser = opponents[1];
+  const firstUser = opponents[0].toLowerCase();
+  const secondUser = opponents[1].toLowerCase();
+  if (firstUser == "help" || secondUser == "help"){
+    const body = {
+    response_type: "in_channel",
+    "text":  "" ,
+    "mrkdwn": true,
+    "attachments": [
+      {
+            "text": ``}]};
+    
+    const help = getHelp();
+    body.attachments[0].text = help;
+    res.send(body);
+  }
 
   battle.getData([firstUser, secondUser]).then(users => {
 
@@ -42,6 +55,11 @@ app.post('/', (req, res) => {
     console.error(err.message);
   });
 });
+
+function getHelp(){
+  
+  return "HelP MESSAGE HERE"
+}
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
