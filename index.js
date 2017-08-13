@@ -26,23 +26,24 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  const opponents = req.body.text.split(" ");
-  const firstUser = opponents[0].toLowerCase();
-  const secondUser = opponents[1].toLowerCase();
-  if (firstUser == "help" || secondUser == "help"){
-    const body = {
+  const userText = req.body.text.split(" ");
+  const firstUser = userText[0].toLowerCase();
+  const secondUser = userText[1].toLowerCase();
+  if (firstUser === "help" || secondUser == "help" || !firstUser || !secondUser){
+     const help = getHelp();
+    let data = {
     response_type: "in_channel",
     "text":  "" ,
     "mrkdwn": true,
     "attachments": [
       {
-            "text": ``}]};
+            "text": help}]};
     
-    const help = getHelp();
-    body.attachments[0].text = help;
-    res.send(body);
+   
+    res.json(data);
   }
 
+else{
   battle.getData([firstUser, secondUser]).then(users => {
 
     const winObj = battle.getWinner(users);
@@ -54,6 +55,7 @@ app.post('/', (req, res) => {
     console.error('An error occurred making this request');
     console.error(err.message);
   });
+}
 });
 
 function getHelp(){
