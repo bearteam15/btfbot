@@ -68,7 +68,7 @@ else{
 
 function getHelp(){
   
-  return "Enter two correct Github usernames to compare their stats and determine winner! Check the example below:\n\n\\btfbot wesbos torvalds"
+  return "Enter two correct Github usernames to compare their stats and determine winner! Check the example below:\n\n/btfbot wesbos torvalds"
 }
 
 app.listen(app.get('port'), function() {
