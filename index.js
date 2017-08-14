@@ -37,7 +37,7 @@ app.post('/', (req, res) => {
     //check if user input is "help" or empty and return help
      const help = getHelp();
     let data = {
-    response_type: "in_channel",
+    response_type: "ephemeral",
     "text":  "" ,
     "mrkdwn": true,
     "attachments": [
@@ -68,7 +68,7 @@ else{
 
 function getHelp(){
   
-  return "HelP MESSAGE HERE"
+  return "Enter two correct Github usernames to compare their stats and determine winner! Check the example below:\n\n\\btfbot wesbos torvalds"
 }
 
 app.listen(app.get('port'), function() {
