@@ -60,6 +60,7 @@ else{
   }).catch(err => {
     console.error('An error occurred making this request');
     console.error(err.message);
+    res.send("Please enter a valid github username");
   });
   
 }
