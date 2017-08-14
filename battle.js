@@ -55,7 +55,7 @@ exports.getData = (users) => {
     })).then(output => {
       console.log(usersData);
       return resolve(usersData);
-    });
+    }).catch(err=>{return reject(err);});
 });
 }
 
@@ -105,4 +105,5 @@ function calculatePoints(users){
     else if (userPt1 < userPt2){ return user2.username; }
     else { return "tie"; }
 }
+
 
