@@ -59,9 +59,18 @@ else{
     res.send(body);
   }).catch(err => {
     console.error('An error occurred making this request');
-    console.error(err.message);
-    res.send("Please enter a valid github username");
-  });
+    console.error(err);
+    
+    res.json({
+      response_type: "ephemeral",
+            "text":  "" ,
+            "mrkdwn": true,
+           "attachments": [
+               {
+                    "text": "Please enter a valid github username(s)"}]});
+                    
+                    
+              });
   
 }
 
