@@ -16,32 +16,57 @@
 <body>
   <div class="uk-section uk-section-muted section--main">
     <div class="uk-container">
-      <h1 class="uk-heading-bullet">@btfbot</h1>
-      <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+      <div class="uk-grid-large uk-child-width-expand@s" uk-grid>
+        <div class="uk-text-center uk-text-right@s img-container">
+          <img class="uk-box-shadow-large uk-border-rounded" src="/images/bot-screenshot.jpeg" alt="Phone Screenshot">
+        </div>
+        <div class="uk-text-center uk-text-left@s uk-flex uk-flex-middle">
+          <div class="description-container uk-width-1-1">
+            <h1 class="uk-heading-primary">@btfbot</h1>
+            <h1 class="uk-heading-bullet uk-margin-small-top uk-margin-medium-bottom">Compare Github Stats</h1>
+            <div class="uk-margin">
+              <a class="uk-button uk-button-default uk-button-primary" href="#">Add to Slack</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <h1 class="uk-heading-line uk-text-center"><span>What it does?</span></h1>
+
+      <div class="uk-border-rounded uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin uk-margin-medium-top uk-margin-medium-bottom"
+        uk-grid>
         <div class="uk-card-media-left uk-cover-container">
-          <img src="/images/bot-page-bg.jpeg" alt="" uk-cover>
+          <img src="/images/bot-page-bg.jpeg" alt="Keyboard on desk" uk-cover>
           <canvas width="600" height="400"></canvas>
         </div>
         <div>
           <div class="uk-card-body">
-            <h3 class="uk-card-title">Hello!</h3>
-            <p>This is just initial version of landing page for our slack bot.</p>
-            <p>Please come back later too see how it works <span uk-icon="icon: happy"></span></p>
-            <hr class="uk-divider-small">
-            <p>This landing page uses:</p>
-            <ul class="uk-list uk-list-bullet">
-              <li><a class="uk-link-muted" href="https://webpack.js.org/concepts/">Webpack</a> and <a class="uk-link-muted" href="https://babeljs.io/">Babel</a> for JavaScript</li>
-              <li><a class="uk-link-muted" href="http://sass-lang.com/">Sass</a> for styles</li>
-              <li><a class="uk-link-muted" href="https://getuikit.com/">UIkit 3</a> as a CSS framework</li>
-            </ul>
+            <h3 class="uk-card-title">So how does it work?</h3>
+            <p><strong>btfbot</strong> takes two github usernames, compares their stats and determines a winner based on an <strong><mark>advanced</mark></strong> algorithm.</p>
+            <div class="icons-container uk-width-1-1 uk-text-center">
+              <span class="uk-margin github-ico" uk-icon="icon: github-alt; ratio: 3.5"></span>
+              <span class="uk-margin bolt-ico" uk-icon="icon: bolt; ratio: 2.5"></span>
+              <span class="uk-margin github-ico" uk-icon="icon: github-alt; ratio: 3.5"></span>
+            </div>
           </div>
         </div>
       </div>
-      <p class="uk-text-meta uk-margin-bottom">
+
+      <h1 class="uk-heading-line uk-text-center"><span>How to use it?</span></h1>
+
+      <div class="uk-text-center uk-width-1-1">
+        <p><code><mark>/btfbot [github_username] [github_username]</mark></code> <span uk-icon="icon: arrow-right"></span> to start battle!</p>
+        <p><code><mark>/btfbot help</mark></code> <span uk-icon="icon: arrow-right"></span> to display help message</p>
+        <hr class="uk-divider-small">
+      </div>
+
+      <p class="uk-text-meta uk-text-center uk-margin-bottom">
         <a href="https://github.com/bearteam15/btfbot">
           <span class="uk-margin-small-right" uk-icon="icon: github"></span> Check out repo for this project here
-        </a>
+        </a> | Slack App by <a href="https://github.com/AdeyinkaAdegbenro">@adeyinka</a>, <a href="https://github.com/rehab-ahmed">@rehab-ahmed</a> and <a href="https://github.com/paweltar">@paweltar</a>
       </p>
+      
     </div>
   </div>
 
