@@ -1,5 +1,17 @@
 @import "imports.scss";
 
 html, body, .section--main {
-  height: 100%;
+  min-height: 100%;
+}
+
+.uk-card {
+  overflow: hidden;
+}
+
+.github-ico {
+  color: lightgray;
+}
+
+.bolt-ico {
+  color: #ffc000;
 }
